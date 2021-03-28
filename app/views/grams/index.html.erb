@@ -1,20 +1,25 @@
-<h1>Grams#index</h1>
+<h1>Binstagram</h1>
 <% @grams.each do |gram| %>
     <div>
 <img src="<%= (url_for(gram.image)) %>"><br>
 By <%= User.find(gram.user_id).username %><br>
 <p><%= gram.description %></p>
+<% if user_signed_in? && current_user.id == gram.user_id %>
+<%= link_to "Delete this gram", gram_path(gram), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 <% @comments = Comment.all.select { |c| c.gram_id == gram.id } %>
 <ul>
 <% @comments.each do |comment| %>
     <li><%= comment.content %> by <%= User.find(comment.user_id).username %></li>
     <% end %>
 </ul>
+<% if user_signed_in? %>
 <%= form_for @comment do |f| %> 
     <%= f.label :content, "Comment" %><br />
     <%= f.text_field :content %>
     <%= f.hidden_field(:gram_id, value: gram.id) %>
     <%= f.submit "Post" %>
+    <% end %>
     <% end %>
 </div>
 <% end %>
