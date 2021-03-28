@@ -10,7 +10,11 @@ By <%= User.find(gram.user_id).username %><br>
 <% @comments = Comment.all.select { |c| c.gram_id == gram.id } %>
 <ul>
 <% @comments.each do |comment| %>
-    <li><%= comment.content %> by <%= User.find(comment.user_id).username %></li>
+    <li><%= comment.content %> by <%= User.find(comment.user_id).username %>
+    <% if user_signed_in? && current_user.id == comment.user_id %>
+    <%= link_to "Delete this comment", comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    </li>
     <% end %>
 </ul>
 <% if user_signed_in? %>
