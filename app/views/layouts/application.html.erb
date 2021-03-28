@@ -10,6 +10,21 @@
   </head>
 
   <body>
+  <div class="links">
+  <%= link_to "Binstagram", :root %>
+  <% if user_signed_in? %>
+  You are currently logged in as <%= current_user.username %>.
+  <%= link_to "Your homepage", user_path(current_user) %>
+  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+  <% else %>
+  <%= link_to "Sign up for Binstagram", user_registration_path %>
+  <%= link_to "Sign in to Binstagram", new_user_session_path %>
+  </div>
+  <% end %>
+  <div class="container">
+  <% flash.each do |key, value| %>
+    <div class="<%= key %>"><%= value %></div>
+  <% end %>
     <%= yield %>
   </body>
 </html>
