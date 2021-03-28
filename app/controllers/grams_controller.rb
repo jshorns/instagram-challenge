@@ -1,5 +1,8 @@
 class GramsController < ApplicationController
+  before_action :authenticate_user!
   def index
+    @grams = Gram.all
+    @comment = Comment.new
   end
 
   def new

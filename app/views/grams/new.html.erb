@@ -1,5 +1,6 @@
 <%= form_for @gram do |f| %>
-    <%= f.text_field :title %>
     <%= f.file_field :image %>
+    <%= f.label :description, "Add a description (optional)" %><br />
+    <%= f.text_field :description %>
     <%= f.submit "Post" %>
 <% end %>
