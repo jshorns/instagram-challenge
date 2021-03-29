@@ -5,6 +5,7 @@
 By <%= User.find(gram.user_id).username %><br> on <%= gram.created_at %>
 <p><%= gram.description %></p>
 <% if user_signed_in? && current_user.id == gram.user_id %>
+<%= link_to "Edit this gram's description", edit_gram_path(gram) %>
 <%= link_to "Delete this gram", gram_path(gram), method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 <ul>
