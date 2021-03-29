@@ -9,9 +9,16 @@
         <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
+    <div class ="fields">
+    <%= form.label :content, "Content" %><br />
+      <%= form.text_field :content %>
+      <%= form.hidden_field(:gram_id, value: @comment.gram.id) %>
+    </div>
+ 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Post" %>
   </div>
+
 <% end %>
