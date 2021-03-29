@@ -16,6 +16,7 @@ class GramsController < ApplicationController
   def create
     @user = current_user
     @gram = @user.grams.create(create_gram_params)
+    @gram.resize_image
     redirect_to grams_url
   end
 
