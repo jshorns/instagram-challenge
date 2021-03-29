@@ -1,5 +1,5 @@
 <h1>Binstagram</h1>
-<% @grams.each.reverse do |gram| %>
+<% @grams.reverse.each do |gram| %>
     <div>
 <img src="<%= (url_for(gram.image)) %>"><br>
 By <%= User.find(gram.user_id).username %><br>

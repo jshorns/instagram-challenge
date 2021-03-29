@@ -1,2 +1,11 @@
-<%= @user.name %>
+<h1>Your grams</h1>
+<% if @user.grams.any? %>
+<% @user.grams.reverse.each do |gram| %>
+    <div>
+<img src="<%= (url_for(gram.image)) %>"><br>
+<p><%= gram.description %></p>
+<% end %>
+<% else %>
+You haven't posted any grams yet! Why not <%= link_to "start now", new_gram_path %>?
+<% end %>
 <!-- <%= link_to "Update your details", edit_user_registration_path %> --!>
