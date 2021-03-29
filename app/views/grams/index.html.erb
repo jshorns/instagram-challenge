@@ -2,7 +2,7 @@
 <% @grams.reverse.each do |gram| %>
     <div>
 <img src="<%= (url_for(gram.image)) %>"><br>
-By <%= User.find(gram.user_id).username %><br>
+By <%= User.find(gram.user_id).username %><br> on <%= gram.created_at %>
 <p><%= gram.description %></p>
 <% if user_signed_in? && current_user.id == gram.user_id %>
 <%= link_to "Delete this gram", gram_path(gram), method: :delete, data: { confirm: 'Are you sure?' } %>
